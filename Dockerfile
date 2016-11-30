@@ -1,8 +1,8 @@
-FROM gliderlabs/alpine:3.1
+FROM alpine:3.4
 
 MAINTAINER CenturyLink Labs <clt-labs-futuretech@centurylink.com>
 
-RUN apk-install openssl
-CMD /usr/bin/openssl genrsa -out /certs/${KEY_NAME}.key 1024 && \
-    /usr/bin/openssl req  -new -newkey rsa:4096 -days 365 -nodes -subj "/C=/ST=/L=/O=/CN=${COMMON_NAME}" -keyout /certs/${KEY_NAME}.key -out /certs/${KEY_NAME}.csr  && \
-    /usr/bin/openssl x509 -req -days 365 -in /certs/${KEY_NAME}.csr -signkey /certs/${KEY_NAME}.key -out /certs/${KEY_NAME}.crt
+RUN apk add --no-cache openssl
+CMD /usr/bin/openssl genrsa -out "${CERT_DIR:-/certs}/${KEY_FILE:-${KEY_NAME}.key}" 2048 && \
+    /usr/bin/openssl req  -new -sha256 -newkey rsa:4096 -days 365 -nodes -subj "/C=${COUNTRY_NAME}/ST=/L=/O=/CN=${COMMON_NAME}" -keyout "${CERT_DIR:-/certs}/${KEY_FILE:-${KEY_NAME}.key}" -out "${CERT_DIR:-/certs}/${KEY_FILE:-${KEY_NAME}}.csr"  && \
+    /usr/bin/openssl x509 -req -days 365 -in "${CERT_DIR:-/certs}/${KEY_FILE:-${KEY_NAME}}.csr" -signkey "${CERT_DIR:-/certs}/${KEY_FILE:-${KEY_NAME}.key}" -out "${CERT_DIR:-/certs}/${CRT_FILE:-${KEY_NAME}.crt}"
