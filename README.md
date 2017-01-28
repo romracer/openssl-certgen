@@ -1,7 +1,7 @@
 openssl
 =======
 
-[![](https://badge.imagelayers.io/spifftastic/openssl-certgen.svg)](https://imagelayers.io/?images=spifftastic/openssl-certgen:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/romracer/openssl-certgen.svg)](https://imagelayers.io/?images=romracer/openssl-certgen:latest 'Get your own badge on imagelayers.io')
 
 Alpine-based image with OpenSSL for SSL certificate generation. Forked from the
 [centurylink/openssl](https://github.com/CenturyLinkLabs/openssl) image.
@@ -15,7 +15,7 @@ docker run --rm \
 	-e COMMON_NAME=<Common Name> \
 	-e KEY_NAME=<Cert File Names Prefix> \
 	-v /var/certs:/certs \
-	spifftastic/openssl-certgen
+	romracer/openssl-certgen
 ```
 
 Environment Variables
