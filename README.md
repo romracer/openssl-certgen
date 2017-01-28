@@ -10,6 +10,7 @@ Usage
 -----
 ```sh
 docker run --rm \
+	-e LIFETIME=3652 \
 	-e COUNTRY_NAME=<Country Name> \
 	-e COMMON_NAME=<Common Name> \
 	-e KEY_NAME=<Cert File Names Prefix> \
@@ -19,6 +20,7 @@ docker run --rm \
 
 Environment Variables
 ---------------------
+- `LIFETIME` - The number of days the cert is valid.  Defaults to 365 days.
 - `COUNTRY_NAME` - The country name. Defaults to nothing.
 - `COMMON_NAME` - The common name.
 - `KEY_NAME` - The name to use for the CSR, certificate, and key. By default,
